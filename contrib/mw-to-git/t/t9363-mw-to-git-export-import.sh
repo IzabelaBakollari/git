@@ -53,8 +53,12 @@ test_expect_failure 'git clone works on previously created wiki with media files
 	git clone -c remote.origin.mediaimport=true \
 		mediawiki::'"$WIKI_URL"' mw_dir_clone &&
 	test_cmp mw_dir_clone/Foo.txt mw_dir/Foo.txt &&
-	(cd mw_dir_clone && git checkout HEAD^) &&
-	(cd mw_dir && git checkout HEAD^) &&
+	(
+		cd mw_dir_clone && git checkout HEAD^
+	) &&
+	(
+		cd mw_dir && git checkout HEAD^
+	) &&
 	test_path_is_file mw_dir_clone/Foo.txt &&
 	test_cmp mw_dir_clone/Foo.txt mw_dir/Foo.txt
 '
